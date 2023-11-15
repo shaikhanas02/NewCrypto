@@ -18,7 +18,7 @@ function GridCard({ data }) {
     </div>
   );
 }
-function Grid(search) {
+function Grid({search}) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   let data = getData();
@@ -30,12 +30,17 @@ function Grid(search) {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-  //   data = PaginatedCoins ;
   console.log(data);
-  const FilteredData = SearchCards(search,data) ; 
+  let filteredData ;
+  // useEffect(()=>{
+
+     filteredData = SearchCards(search,data) ; 
+
+  // },[search]) ;
+  console.log(filteredData) ;
   return (
     <div>
-      {FilteredData ?
+      {!filteredData.length=== 0 ?(
       <>
       <div>
         {PaginatedCoins.map((data, i) => (
@@ -49,13 +54,13 @@ function Grid(search) {
     /> 
     </>
 
-      : <div>
-      {FilteredData.map((data, i) => (
+     ) :( <div>
+      {filteredData.map((data, i) => (
         <GridCard key={i} data={data} />
       ))}
     </div>
 
-    }
+    )}
       
     </div>
   );

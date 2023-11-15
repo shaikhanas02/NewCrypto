@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Search(setSearch) {
+function Search({setSearch}) {
   return (
     <div className="flex flex-row rounded-3xl bg-gray-200 p-5 m-4">
       <input

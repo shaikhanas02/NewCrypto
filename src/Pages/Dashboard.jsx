@@ -11,9 +11,8 @@ function Dashboard() {
   return (
     <div>
         <Header />
-        <Search setSearch= 'setSearch' />
-        <Tabs className="bg-slate-400" />
-{/* <Pagination /> */}
+        <Search setSearch= {setSearch} />
+        <Tabs  search={search}className="bg-slate-400" />
     </div>
   )
 }

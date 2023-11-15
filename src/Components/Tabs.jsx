@@ -14,14 +14,16 @@ const Tab = ({onTab, label, active, className})=>{
 
 
 
-const tabs = [
-    {label : 'Grid', content : <Grid search='search'/>},
-    {label : 'List', content : <List search='search' />}
-]
 
-function Tabs({className}) {
+
+function Tabs({className, search}) {
     const [activeTab, setActiveTab] = useState(0) ;
 
+    const tabs = [
+        {label : 'Grid', content : <Grid search={search}/>},
+        {label : 'List', content : <List search={search} />}
+    ]
+    
     function handleTab(i){
         setActiveTab(i) ;
     }
