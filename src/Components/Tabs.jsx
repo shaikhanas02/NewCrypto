@@ -15,8 +15,8 @@ const Tab = ({onTab, label, active, className})=>{
 
 
 const tabs = [
-    {label : 'Grid', content : <Grid />},
-    {label : 'List', content : <List />}
+    {label : 'Grid', content : <Grid search='search'/>},
+    {label : 'List', content : <List search='search' />}
 ]
 
 function Tabs({className}) {
