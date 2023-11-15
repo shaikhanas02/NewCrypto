@@ -11,7 +11,7 @@ function Dashboard() {
   return (
     <div>
         <Header />
-        <Search setSearch= {setSearch} />
+        <Search search={search} setSearch= {setSearch} />
         <Tabs  search={search}className="bg-slate-400" />
     </div>
   )

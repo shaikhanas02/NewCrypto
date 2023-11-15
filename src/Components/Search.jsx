@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-function Search({setSearch}) {
+function Search({search ,setSearch,data}) {
+  console.log(search) ;
   return (
     <div className="flex flex-row rounded-3xl bg-gray-200 p-5 m-4">
       <input
@@ -10,6 +11,7 @@ function Search({setSearch}) {
         onChange={(e) => setSearch(e.target.value)}
       />
     </div>
+    
   );
 }
 

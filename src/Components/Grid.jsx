@@ -18,9 +18,10 @@ function GridCard({ data }) {
     </div>
   );
 }
-function Grid({search}) {
+function Grid({ search }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [filteredData, setFilteredData] = useState([]);
   let data = getData();
   const PaginatedCoins = GetPaginatedCoins(data, currentPage, itemsPerPage);
 
@@ -31,37 +32,37 @@ function Grid({search}) {
     setCurrentPage(page);
   };
   console.log(data);
-  let filteredData ;
-  // useEffect(()=>{
 
-     filteredData = SearchCards(search,data) ; 
+  useEffect(() => {
+    if (search) {
+      setFilteredData(SearchCards(search, data));
+    } else {
+      setFilteredData([]); 
+    }  }, [search]);
 
-  // },[search]) ;
-  console.log(filteredData) ;
+  console.log(filteredData);
   return (
     <div>
-      {!filteredData.length=== 0 ?(
-      <>
-      <div>
-        {PaginatedCoins.map((data, i) => (
-          <GridCard key={i} data={data} />
-        ))}
-      </div>
-      <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={handlePageChange}
-    /> 
-    </>
-
-     ) :( <div>
-      {filteredData.map((data, i) => (
-        <GridCard key={i} data={data} />
-      ))}
-    </div>
-
-    )}
-      
+      {filteredData.length === 0 ? (
+        <>
+          <div>
+            {PaginatedCoins.map((data, i) => (
+              <GridCard key={i} data={data} />
+            ))}
+          </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </>
+      ) : (
+        <div>
+          {filteredData.map((data, i) => (
+            <GridCard key={i} data={data} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
