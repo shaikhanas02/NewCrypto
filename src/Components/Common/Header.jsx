@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <header className="flex items-center justify-between  p-4 bg-slate-300 text-white">
+    <header className="flex items-center justify-between  p-4 bg-slate-800 text-white">
      <h1 className="text-2xl font-bold hover:text-red-300">CryptoTracker</h1>
       <nav>
         <ul className="flex flex-row">
@@ -27,7 +27,7 @@ function Header() {
             <Link to="/dashboard" className="text-xl font-bold hover:text-blue-500">
               Dashboard
             </Link>
-          </li>
+          </li> 
         </ul>
       </nav>
     </header>

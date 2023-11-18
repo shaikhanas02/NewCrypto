@@ -2,9 +2,10 @@ import React from 'react'
 
 function Cards({data}) {
   return (
-    <div className='flex flex-col  border-solid border-indigo-700 p-3'>
+    <div className='flex flex-row border p-4 m-2 w-full'>
+    {/* <div> */}
         <p>{data.id}</p> 
-        <img className='w-6 'src={data.image.thumb} alt="abc" />
+        <img src={data.image.thumb} alt="abc" />
         <p>${data.market_data.current_price.usd}</p>
         <p>{data.market_data.price_change_percentage_24h_in_currency.usd}%</p>
         <p>Total Volume : {data.market_data.total_volume.usd}</p>
