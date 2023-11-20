@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Grid from "./Grid";
-import List from "./List";
 
 const Tab = ({ onTab, label, active, className }) => {
   return (
@@ -17,27 +15,24 @@ const Tab = ({ onTab, label, active, className }) => {
 };
 
 
-function Tabs({ className, search }) {
+function Tabs({ className, tabs }) {
   const [activeTab, setActiveTab] = useState(0);
 
-  const tabs = [
-    { label: "Grid", content: <Grid search={search} /> },
-    { label: "List", content: <List search={search} /> },
-  ];
+  
 
   function handleTab(i) {
     setActiveTab(i);
   }
   return (
     <div
-      className="flex flex-col items-center border-2 border-solid border-black px-40 h-full
+      className="flex flex-col items-center border-2 border-solid border-black px-40 h-full className
     "
     >
       <div
         className="flex flex-row w-full justify-between border-2 border-solid border-black
 "
       >
-        {tabs.map((tab, i) => (
+        {tabs?.map((tab, i) => (
           <Tab
             label={tab.label}
             onTab={() => handleTab(i)}
@@ -47,7 +42,9 @@ function Tabs({ className, search }) {
           />
         ))}
       </div>
-      <div>{tabs[activeTab].content}</div>
+      <div>
+        {tabs[activeTab].content}
+      </div>
     </div>
   );
 }

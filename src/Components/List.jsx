@@ -4,27 +4,11 @@ import GetPaginatedCoins from '../Functions/GetPaginatedCoins';
 import Pagination from './Pagination';
 import SearchCards from '../Functions/SearchCards';
 import { Link } from 'react-router-dom';
-
-function ListCard({data}){
-
-    return(
-    <Link to={`/dashboard/${data.id}`}>
- <div className='flex flex-row border p-4 m-2 w-full'>
-    {/* <div> */}
-        <p>{data.id}</p> 
-        <img src={data.image.thumb} alt="abc" />
-        <p>${data.market_data.current_price.usd}</p>
-        <p>{data.market_data.price_change_percentage_24h_in_currency.usd}%</p>
-        <p>Total Volume : {data.market_data.total_volume.usd}</p>
-        <p>Market Cap : {data.market_data.market_cap.usd}</p>
-        </div>
-        </Link>
-    )
-}
-
+import Cards from './Common/Cards';
 
 function List({search}) {
     let data = getData() ;
+
 
     const[currentPage, setCurrentPage] = useState(1) ;
     const [filteredData, setFilteredData] = useState([])
@@ -52,14 +36,14 @@ setCurrentPage(page) ;
    ( <>
    <div>
         {PaginatedCoins.map((data,i)=>(
-            <ListCard key={i} data={data} />
+            <Cards key={i} data={data}  />
             ))}
             </div>
 <Pagination currentPage={currentPage} onPageChange={handlePageChange} totalPages={totalPages}/>
 </>
  ):(
 filteredData.map((data,i)=>(
-    <ListCard key={i} data={data} />
+    <Cards key={i} data={data} />
     )
     )
 

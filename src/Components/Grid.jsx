@@ -34,7 +34,7 @@ function Grid({ search }) {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     if (search) {
@@ -44,7 +44,7 @@ function Grid({ search }) {
     }
   }, [search]);
 
-  console.log(filteredData);
+  // console.log(filteredData);
   return (
     <div>
       {filteredData.length === 0 ? (
