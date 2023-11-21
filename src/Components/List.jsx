@@ -4,7 +4,7 @@ import GetPaginatedCoins from '../Functions/GetPaginatedCoins';
 import Pagination from './Pagination';
 import SearchCards from '../Functions/SearchCards';
 import { Link } from 'react-router-dom';
-import Cards from './Common/Cards';
+import ListCards from './Common/ListCards';
 
 function List({search}) {
     let data = getData() ;
@@ -36,14 +36,14 @@ setCurrentPage(page) ;
    ( <>
    <div>
         {PaginatedCoins.map((data,i)=>(
-            <Cards key={i} data={data}  />
+            <ListCards key={i} data={data}  />
             ))}
             </div>
 <Pagination currentPage={currentPage} onPageChange={handlePageChange} totalPages={totalPages}/>
 </>
  ):(
 filteredData.map((data,i)=>(
-    <Cards key={i} data={data} />
+    <ListCards key={i} data={data} />
     )
     )
 

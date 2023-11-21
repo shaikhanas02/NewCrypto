@@ -3,29 +3,27 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { Link } from 'react-router-dom';
 
-function Cards({data}) { 
+function ListCards({data}) { 
   const [isSave,setIsSave] = useState(false) ;
 
   if (!data) {
     return <div>Loading...</div>; // You can replace this with a loading indicator or other appropriate content
   }
 
-  useEffect(() => {
-    // Check if the card is saved in local storage when the component mounts
+  useEffect(() => { 
     const savedCards = JSON.parse(localStorage.getItem('savedCards')) || [];
     const isCardSaved = savedCards.some((card) => card.id === data.id);
-    setIsSave(isCardSaved);
-  }, [data.id]);
+    setIsSave(isCardSaved); 
+  }, [ data.id]);
 
   const handleSave = () => {
     setIsSave(!isSave);
     const savedCards = JSON.parse(localStorage.getItem('savedCards')) || [];
-
+     
     if (!isSave) {
       // Save to local storage
       savedCards.push(data);
     } else {
-      // Remove from local storage
       const updatedSavedCards = savedCards.filter((card) => card.id !== data.id);
       savedCards.length = 0;
       savedCards.push(...updatedSavedCards);
@@ -53,4 +51,4 @@ function Cards({data}) {
   )
 }
 
-export default Cards ;
+export default ListCards ;

@@ -26,9 +26,7 @@ const CompareCharts = ({ coin1, coin2 }) => {
     fetchData();
   }, [coin1.id, coin2.id, days, type]);
 
-//   console.log(type);
-//   console.log(coinData[type]);
-//   console.log(data.id);
+
   const labels = coinData1[type]?.map((item) => {
     const date = new Date(item[0]);
     return `${date.getMonth() + 1}/${date.getDate()}`; // Format as MM/DD
@@ -52,18 +50,6 @@ const CompareCharts = ({ coin1, coin2 }) => {
       }
     ],
   };
-  // const options = {
-  //   scales: {
-  //     x: {
-  //       type: 'category', // Use 'linear' or 'time' depending on your data
-  //       labels : labels,
-  //       position: 'bottom',
-  //     },
-  //     y: {
-  //       type: 'linear', // Use 'linear' for numeric data
-  //     },
-  //   },
-  // };
 
   return (
     <>

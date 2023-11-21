@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import getData from "../Functions/getData";
-import Cards from "../Components/Common/Cards";
+import ListCards from "../Components/Common/ListCards";
 import Header from "../Components/Common/Header";
 import Description from "../Components/Common/Description";
 import Charts from "../Components/Common/Chart";
@@ -31,7 +31,7 @@ function Coin() {
     <div>
         <Header />
       {/* Render additional details about the coin */}
-    <Cards data={coinData} />
+    <ListCards data={coinData} />
     <Charts data={coinData} />
      <Description data={coinData}/>
     </div>
