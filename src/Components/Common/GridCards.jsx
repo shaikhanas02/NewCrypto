@@ -5,17 +5,21 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 function GridCards({ data }) {
     const [isSave,setIsSave] = useState(false) ;
-    const savedCards = JSON.parse(localStorage.getItem('savedCards')) || [] ; 
-
+    
+    if (!data) {
+      return <div>Loading...</div>; // You can replace this with a loading indicator or other appropriate content
+    }
     useEffect(() => {
         const savedCards = JSON.parse(localStorage.getItem('savedCards')) || [];
         const isCardSaved = savedCards.some((card) => card.id === data.id);
         setIsSave(isCardSaved); 
+        
       }, [ data.id]); 
 
     function handleSave(){
        setIsSave(!isSave) ;
-               console.log(isSave) ;
+       const savedCards = JSON.parse(localStorage.getItem('savedCards')) || [];
+
                if(!isSave){
                 savedCards.push(data) ;
             } 

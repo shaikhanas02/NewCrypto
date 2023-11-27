@@ -10,6 +10,8 @@ function App() {
  
   return (
     <div >
+      
+
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>} />
@@ -19,6 +21,7 @@ function App() {
         <Route path='/dashboard/:coinId' element={<Coin/>} />
       </Routes>
       </BrowserRouter>
+      
     </div>
   )
 }

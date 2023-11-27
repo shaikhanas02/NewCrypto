@@ -11,6 +11,13 @@ function Compare() {
   const [data1, setData1] = useState("");
   const [data2, setData2] = useState("");
 
+  const arr = ['solano','bitcoin','ethereum','tether','binancecoin','ripple','usd-coin','staked-ether','cardano', 'dogecoin', 'tron','the open-network','chainlink','avalanche-2', 'matic-network', 'polkadot', 'wrapped-bitcoin' , 'dai','litecoin','shiba-inu','bitcoin-cash','uniswap','leotoken','okb','stellar','true-usd','monero','kaspa','ethereum-classic', 'cosmos' ,'crypto-com-chain','lido-dao','filecoin','hedera-hashgraph'] ; 
+   
+  const arr1 = arr.filter((item)=> item != id2 ) ;
+  const arr2 = arr.filter((item)=> item != id1 ) ;
+
+
+
   useEffect(() => {
     const fetchData1 = async () => {
       const res = await fetch(`https://api.coingecko.com/api/v3/coins/${id1}`);
@@ -33,8 +40,8 @@ function Compare() {
   return ( 
     <div>
       <Header />
-      <SelectCoins setId={setId1} id={id1} />
-      <SelectCoins setId={setId2} id={id2} />
+      <SelectCoins setId={setId1} id={id1} arr={arr1}/>
+      <SelectCoins setId={setId2} id={id2} arr={arr2}/>
       {data1 && <ListCards data={data1} /> }
       {data2 && <ListCards data={data2} /> }
       {data1 && data2 && <CompareCharts coin1={data1} coin2={data2} /> } 

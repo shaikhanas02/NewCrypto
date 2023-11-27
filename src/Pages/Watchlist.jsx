@@ -14,7 +14,7 @@ function Watchlist() {
     setData(savedData);
   }, []);
 
-  console.log(data);
+  // console.log(data);
   const tabs = [
     {
       label: "Grid",

@@ -1,21 +1,20 @@
 
-import React, { Children, useState } from "react";
-import { useContext } from "react";
+// import React, { useState } from "react";
 
 
-export const UserContext = React.createContext() ;
+// export const UserContext = React.createContext() ;
 
 
-export const UserContextProvider = ({Children}) => {
- let [user,setUser] = useState('') ;
+// export const UserContextProvider = ({Children}) => {
+//  let [savedCards,setSavedCards] = useState([]) ;
 
- const value = {
-    user,setUser
- }
+//  const value = {
+//     savedCards,setSavedCards 
+//  }
 
- return(
+//  return(
 
-    <UserContext.Provider value={value}>{Children}</UserContext.Provider>
- )
+//     <UserContext.Provider value={value}>{Children}</UserContext.Provider>
+//  )
 
-}
+// }

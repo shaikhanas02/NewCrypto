@@ -10,6 +10,7 @@ function Grid({ search }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [filteredData, setFilteredData] = useState([]);
+  
   let data = getData();
   const PaginatedCoins = GetPaginatedCoins(data, currentPage, itemsPerPage);
 

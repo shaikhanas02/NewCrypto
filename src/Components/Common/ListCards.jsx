@@ -21,7 +21,7 @@ function ListCards({data}) {
     const savedCards = JSON.parse(localStorage.getItem('savedCards')) || [];
      
     if (!isSave) {
-      // Save to local storage
+      // Save to local storage 
       savedCards.push(data);
     } else {
       const updatedSavedCards = savedCards.filter((card) => card.id !== data.id);
