@@ -11,7 +11,7 @@ function Register() {
   const handleSubmit = async () => {
 
      try{
-      const res = await axios.post('http://localhost:8000/register', {username, password}) ;
+      const res = await axios.post('https://newcrypto.onrender.com/register', {username, password}) ;
       console.log(res) ;
       navigate('/login')
      }

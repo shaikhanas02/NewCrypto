@@ -14,7 +14,7 @@ function Login({setLoggedIn}) {
     e.preventDefault() ;
 
     try {
-      const res = await axios.post("http://localhost:8000/login", {
+      const res = await axios.post("https://newcrypto.onrender.com/login", {
         username,password
       }); 
       console.log(res.data) ;
