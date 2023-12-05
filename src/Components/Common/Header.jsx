@@ -55,17 +55,22 @@ function Header({setLoggedIn}) {
               Dashboard
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to='/register'> Register
           </NavLink>
           </li>
           <li>
             <NavLink to='/login'>Login
           </NavLink>
+          </li> */}
+          <li>
+            <button onClick={()=>{
+  setLoggedIn(false) ;
+  localStorage.setItem('loggedIn',false) ;
+  console.log('hui')
+
+            }}>Logout</button>
           </li>
-          <li><button onClick={()=>{
-            localStorage.setItem('loggedIn',false) ;
-          }}>Logout</button></li>
         </ul>
       </nav>
          </div>
@@ -118,8 +123,8 @@ function Header({setLoggedIn}) {
           </li> */}
           <li>
             <button onClick={()=>{
-  // localStorage.setItem('loggedIn',false) ;
   setLoggedIn(false) ;
+  localStorage.setItem('loggedIn',false) ;
   console.log('hui')
 
             }}>Logout</button>

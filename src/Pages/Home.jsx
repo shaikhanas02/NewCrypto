@@ -4,12 +4,7 @@ import { Link } from 'react-router-dom';
 import Login from './Login';
 
 function Home({loggedIn, setLoggedIn}) {
-  
-  // const [loggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIn"));
 
-  // useEffect(() => { 
-  //   setLoggedIn(localStorage.getItem("loggedIn"));
-  // }, []);
  console.log(loggedIn) ;
 
   if(loggedIn){

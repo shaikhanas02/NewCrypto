@@ -11,15 +11,15 @@ import Register from "./Pages/Register";
 function App() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("false")); 
 
-  useEffect(() => {
-    setLoggedIn(localStorage.getItem("loggedIn"));
-  }, []);
+  // useEffect(() => {
+  //   setLoggedIn(localStorage.getItem("loggedIn"));
+  // }, []);
   console.log(loggedIn);
 
   return (
     <BrowserRouter>
       <Routes>
-        {loggedIn ? (
+        {loggedIn ? ( 
           <>
             <Route path="/" element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
             <Route path="/compare" element={<Compare />} />
