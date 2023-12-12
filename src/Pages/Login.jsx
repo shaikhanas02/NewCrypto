@@ -17,10 +17,10 @@ function Login({setLoggedIn}) {
       const res = await axios.post("https://newcrypto.onrender.com/login", {
         username,password
       }); 
-      console.log(res.data) ;
+      console.log(res) ;
       const { status, message } = res.data;
       
-      setLoggedIn(true) ;
+      // setLoggedIn(true) ; 
       
       if (status) {
         console.log("Login Successfully");

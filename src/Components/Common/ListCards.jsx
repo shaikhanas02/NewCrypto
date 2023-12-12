@@ -10,6 +10,10 @@ function ListCards({data}) {
     return <div>Loading...</div>; // You can replace this with a loading indicator or other appropriate content
   }
 
+  if (!data || !data.image || !data.image.thumb || !data.market_data) {
+    return <div>Loading...</div>;
+  }
+
   useEffect(() => { 
     const savedCards = JSON.parse(localStorage.getItem('savedCards')) || [];
     const isCardSaved = savedCards.some((card) => card.id === data.id);

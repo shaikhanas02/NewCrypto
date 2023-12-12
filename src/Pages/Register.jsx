@@ -9,7 +9,7 @@ function Register() {
   const navigate = useNavigate() ;
 
   const handleSubmit = async () => {
-
+    
      try{
       const res = await axios.post('https://newcrypto.onrender.com/register', {username, password}) ;
       console.log(res) ;
@@ -21,7 +21,7 @@ function Register() {
      finally{
       setUsername('');
       setPassword('') ;
-     }
+     } 
 
 
   }

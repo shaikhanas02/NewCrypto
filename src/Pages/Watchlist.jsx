@@ -1,28 +1,39 @@
 import React, { useState, useEffect } from "react";
 import Header from "../Components/Common/Header";
 import Tabs from "../Components/Tabs";
-// import Grid from "../Components/Grid";
 import ListCards from "../Components/Common/ListCards";
 import GridCards from "../Components/Common/GridCards";
+import getData from "../Functions/getData";
+
 function Watchlist() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
-  // Fetch data from local storage when the component mounts
-  useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem("savedCards")) || [];
-    console.log(savedData);
-    setData(savedData);
-  }, []);
+    useEffect(() => {
+  
 
-  // console.log(data);
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`http://localhost:8000/watchlist?id=${data.id}`);
+        const info = await res.json();
+        console.log(data); 
+        // console.log(info.data.image.thumb)
+        setData(info.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData() ;
+  }, []);  
+ 
+  console.log(data);
   const tabs = [
     {
       label: "Grid",
-      content: data.map((item)=>  <GridCards key={item.id} data={item} /> ),
+      content:  <GridCards key={data.id} data={data} /> ,
     },
     {
       label: "List",
-      content: data.map((item) => <ListCards key={item.id} data={item} />),
+      content:  <ListCards key={data.id} data={data} />,
     },
   ];
   return (

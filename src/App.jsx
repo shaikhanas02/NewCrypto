@@ -8,19 +8,21 @@ import Coin from "./Pages/Coin";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 
-function App() {
-  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("false")); 
+function App() { 
+  const [loggedIn, setLoggedIn] = useState(false);
+  
+  useEffect(() => {
+    setLoggedIn(localStorage.getItem("loggedIn"));
+  }, []); 
 
-  // useEffect(() => {
-  //   setLoggedIn(localStorage.getItem("loggedIn"));
-  // }, []);
   console.log(loggedIn);
-
+  
   return (
     <BrowserRouter>
       <Routes>
+        console.log(loggedIn) ;
         {loggedIn ? ( 
-          <>
+          <> 
             <Route path="/" element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
             <Route path="/compare" element={<Compare />} />
             <Route path="/dashboard" element={<Dashboard />} />

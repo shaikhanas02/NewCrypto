@@ -6,6 +6,7 @@ import SearchCards from "../Functions/SearchCards";
 import GridCards from "./Common/GridCards";
 
 
+
 function Grid({ search }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
