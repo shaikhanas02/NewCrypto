@@ -15,7 +15,7 @@ function Dashboard() {
   return (
     <div
       className="bg-slate-100 min-h-screen w-full
-    "
+    " 
     >
       <Header /> 
       <Search search={search} setSearch={setSearch} />

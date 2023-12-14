@@ -3,37 +3,46 @@ import Header from "../Components/Common/Header";
 import Tabs from "../Components/Tabs";
 import ListCards from "../Components/Common/ListCards";
 import GridCards from "../Components/Common/GridCards";
-import getData from "../Functions/getData";
 
 function Watchlist() {
-  const [data, setData] = useState({});
 
-    useEffect(() => {
-  
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/watchlist?id=${data.id}`);
+        const res = await fetch(`http://localhost:8000/watchlist`);
         const info = await res.json();
-        console.log(data); 
-        // console.log(info.data.image.thumb)
-        setData(info.data);
+
+        const additionalData = [];
+
+        for(const item of info.users){
+          const res = await fetch(
+            `https://api.coingecko.com/api/v3/coins/${item.id}`
+          );
+          const addInfo = await res.json();
+          console.log(addInfo) ;
+          additionalData.push(addInfo) ;
+        };
+
+        setData(additionalData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-    fetchData() ;
-  }, []);  
- 
-  console.log(data);
+   
+    fetchData();
+    console.log(data);
+  }, []);
+
   const tabs = [
     {
       label: "Grid",
-      content:  <GridCards key={data.id} data={data} /> ,
+      content: data.map((data) => <GridCards key={data.id} data={data} />),
     },
     {
       label: "List",
-      content:  <ListCards key={data.id} data={data} />,
+      content: data.map((data) => <ListCards key={data.id} data={data} />),
     },
   ];
   return (

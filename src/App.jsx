@@ -7,23 +7,28 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Coin from "./Pages/Coin";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import { CardProvider } from "./Context/CardContext";
 
-function App() { 
+function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  
+
   useEffect(() => {
     setLoggedIn(localStorage.getItem("loggedIn"));
-  }, []); 
+  }, []) ; 
 
   console.log(loggedIn);
-  
+
   return (
+        <CardProvider>
     <BrowserRouter>
       <Routes>
-        console.log(loggedIn) ;
-        {loggedIn ? ( 
-          <> 
-            <Route path="/" element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+        {/* console.log(loggedIn) ; */}
+        {loggedIn ? (
+          <>
+            <Route
+              path="/"
+              element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+            />
             <Route path="/compare" element={<Compare />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/watchlist" element={<Watchlist />} />
@@ -38,6 +43,7 @@ function App() {
         )}
       </Routes>
     </BrowserRouter>
+        </CardProvider>
   );
 }
 

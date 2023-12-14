@@ -2,39 +2,42 @@ import React,{useState, useEffect} from 'react';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useCardContext } from '../../Context/CardContext';
 
 function ListCards({data}) { 
-  const [isSave,setIsSave] = useState(false) ;
+  const { savedCards, toggleSave } = useCardContext();
+  const isSave = savedCards.includes(data.id);
 
   if (!data) {
-    return <div>Loading...</div>; // You can replace this with a loading indicator or other appropriate content
+    return <div>Loading...</div>;  
   }
 
-  if (!data || !data.image || !data.image.thumb || !data.market_data) {
-    return <div>Loading...</div>;
+  function handleSave() {
+    toggleSave(data.id) ;
+    
+    const { id 
+    } = data ;
+   
+
+    if (!isSave) { 
+      const savedCard = {
+        id, isSave
+      } ;
+  
+      console.log(savedCard)
+      postData();
+      
+      async function postData() {
+        try {
+          console.log("api")
+          const res = await axios.post("http://localhost:8000/card", savedCard);
+        } catch (error) {
+          console.log("Error", error);
+        }
+      } 
+    };
   }
-
-  useEffect(() => { 
-    const savedCards = JSON.parse(localStorage.getItem('savedCards')) || [];
-    const isCardSaved = savedCards.some((card) => card.id === data.id);
-    setIsSave(isCardSaved); 
-  }, [ data.id]);
-
-  const handleSave = () => {
-    setIsSave(!isSave);
-    const savedCards = JSON.parse(localStorage.getItem('savedCards')) || [];
-     
-    if (!isSave) {
-      // Save to local storage 
-      savedCards.push(data);
-    } else {
-      const updatedSavedCards = savedCards.filter((card) => card.id !== data.id);
-      savedCards.length = 0;
-      savedCards.push(...updatedSavedCards);
-    }
-
-    localStorage.setItem('savedCards', JSON.stringify(savedCards));
-  };
 
   
   

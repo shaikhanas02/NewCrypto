@@ -3,57 +3,41 @@ import { useState, useEffect } from "react";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import axios from "axios"; 
+import { useCardContext } from "../../Context/CardContext";
 
 function GridCards({ data }) { 
-  console.log(data) ; 
-  const [isSave, setIsSave] = useState(false);
-  // const [savedCards, setSavedCards] = useState([]) ; 
+  const { savedCards, toggleSave } = useCardContext();
+  const isSave = savedCards.includes(data.id);
 
-  if (!data || !data.image || !data.image.thumb || !data.market_data) {
-    return <div>Loading...</div>;
-  }
   if (!data) {
     return <div>Loading...</div>;
-  } 
+  }  
 
-  function handleSave() {
-    setIsSave(!isSave);
-    // let savedCards =  '';
-    console.log(data);
-    const { id, image, market_data } = data;
-    const {
-      current_price: { usd: currentPriceUsd },
-      total_volume: { usd: totalVolumeUsd },
-      market_cap: { usd: marketCapUsd },
-      price_change_percentage_24h_in_currency: { usd: priceChangeUsd },
-    } = market_data;
-    const { thumb  } = image;
+  async function handleSave() {
+    toggleSave(data.id);
 
-    if (!isSave) { 
-      const savedCards = {
-        id,
-        image: {thumb},
-        market_data: {
-          current_price: { usd: currentPriceUsd },
-          total_volume: { usd: totalVolumeUsd },
-          market_cap: { usd: marketCapUsd },
-          price_change_percentage_24h_in_currency: { usd: priceChangeUsd },
-        },
-      } ;
-  
-      console.log(savedCards)
-      postData();
-      
-      async function postData() {
-        try {
-          console.log("api")
-          const res = await axios.post("http://localhost:8000/card", savedCards);
-        } catch (error) {
-          console.log("Error", error);
-        }
-      } 
-    };
+    const { id } = data;
+
+    try {
+      if (isSave) {
+        // If already saved, delete the card
+        console.log(data)
+        console.log(data.constructor)
+        console.log() ;
+        await axios.delete("http://localhost:8000/card" , data); 
+        console.log("Card deleted successfully");
+      } else { 
+        // If not saved, save the card
+        const savedCard = { id, isSave: true };
+        await axios.post("http://localhost:8000/card", savedCard);
+        console.log("Card saved successfully");
+      }
+    } catch (error) {
+      console.log("Error", error);
+      // Handle error if needed
+    }
   }
+
   return (
     <div className="flex flex-row border-2 border-solid  border-red-500 bg-slate-400 m-2">
       <Link to={`/dashboard/${data.id}`}>
