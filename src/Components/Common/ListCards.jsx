@@ -31,7 +31,7 @@ function ListCards({data}) {
       async function postData() {
         try {
           console.log("api")
-          const res = await axios.post("http://localhost:8000/card", savedCard);
+          const res = await axios.post("https://newcrypto.onrender.com/card", savedCard);
         } catch (error) {
           console.log("Error", error);
         }

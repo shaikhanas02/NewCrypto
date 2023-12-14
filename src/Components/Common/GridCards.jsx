@@ -24,12 +24,12 @@ function GridCards({ data }) {
         console.log(data)
         console.log(data.constructor)
         console.log() ;
-        await axios.delete("http://localhost:8000/card" , data); 
+        await axios.delete("https://newcrypto.onrender.com/card" , data); 
         console.log("Card deleted successfully");
       } else { 
         // If not saved, save the card
         const savedCard = { id, isSave: true };
-        await axios.post("http://localhost:8000/card", savedCard);
+        await axios.post("https://newcrypto.onrender.com/card", savedCard);
         console.log("Card saved successfully");
       }
     } catch (error) {

@@ -11,7 +11,7 @@ function Watchlist() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/watchlist`);
+        const res = await fetch(`https://newcrypto.onrender.com/watchlist`);
         const info = await res.json();
 
         const additionalData = [];
