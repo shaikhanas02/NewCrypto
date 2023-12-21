@@ -13,30 +13,29 @@ function ListCards({data}) {
     return <div>Loading...</div>;  
   }
 
-  function handleSave() {
-    toggleSave(data.id) ;
-    
-    const { id 
-    } = data ;
-   
+  async function handleSave() {
+    toggleSave(data.id);
 
-    if (!isSave) { 
-      const savedCard = {
-        id, isSave
-      } ;
-  
-      console.log(savedCard)
-      postData();
-      
-      async function postData() {
-        try {
-          console.log("api")
-          const res = await axios.post("https://newcrypto.onrender.com/card", savedCard);
-        } catch (error) {
-          console.log("Error", error);
-        }
-      } 
-    };
+    const { id } = data;
+
+    try {
+      if (isSave) {
+        // If already saved, delete the card
+        // console.log(data)
+        // console.log(data.constructor)
+        // console.log() ;
+        await axios.delete("https://newcrypto.onrender.com/card" , data); 
+        console.log("Card deleted successfully");
+      } else { 
+        // If not saved, save the card
+        const savedCard = { id, isSave: true };
+        await axios.post("https://newcrypto.onrender.com/card", savedCard);
+        console.log("Card saved successfully");
+      }
+    } catch (error) {
+      console.log("Error", error);
+      // Handle error if needed
+    }
   }
 
   

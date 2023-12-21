@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { AiOutlineMenu } from "react-icons/ai";
+import { FaSignOutAlt } from "react-icons/fa";
 
-function Header( {setLoggedIn} ) {
+function Header({ setLoggedIn }) {
   const [showSidebar, setShowSidebar] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 768px )" });
+  const Navigate = useNavigate() ;
   const toggleSideBar = () => {
     setShowSidebar(!showSidebar);
-  };  
+  };
 
   return (
-    <header className="flex items-center justify-between  p-4 bg-slate-800 text-white">
-      <Link to="/" className="text-2xl font-bold hover:text-red-300">
+    <header className="flex items-center justify-between  p-4 bg-black text-white">
+      <Link to="/" className="text-2xl font-bold hover:text-blue-700">
         CryptoTracker
       </Link>
       {isMobile ? (
@@ -26,7 +28,7 @@ function Header( {setLoggedIn} ) {
               <nav>
                 <ul className="flex flex-col">
                   <li>
-                    <NavLink 
+                    <NavLink
                       to="/"
                       className="mr-6 text-xl font-bold hover:text-blue-500"
                     >
@@ -57,23 +59,16 @@ function Header( {setLoggedIn} ) {
                       Dashboard
                     </NavLink>
                   </li>
-                  {/* <li>
-            <NavLink to='/register'> Register
-          </NavLink>
-          </li>
-          <li>
-            <NavLink to='/login'>Login
-          </NavLink>
-          </li> */}
                   <li>
                     <button
                       onClick={() => {
-                        setLoggedIn(false);
-                        localStorage.removeItem("loggedIn"); 
-                        console.log("hui");
+                        setLoggedIn(false); 
+                        localStorage.removeItem("loggedIn");
+                        console.log("hui"); 
+                        Navigate('/login')
                       }}
                     >
-                      Logout
+                      <FaSignOutAlt />
                     </button>
                   </li>
                 </ul>
@@ -121,10 +116,13 @@ function Header( {setLoggedIn} ) {
                 onClick={() => {
                   setLoggedIn(false);
                   localStorage.removeItem("loggedIn");
+                  localStorage.removeItem("token");
+                  Navigate('/login')
                   console.log("hui");
                 }}
+                className="ml-2"
               >
-                Logout
+                <FaSignOutAlt />
               </button>
             </li>
           </ul>

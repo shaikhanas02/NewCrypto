@@ -3,11 +3,11 @@ import React from "react";
 import Header from "../Components/Common/Header";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import {Link} from 'react-router-dom' ;
 
 function Login({setLoggedIn}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [loggedIn, setLoggedIn] = useState(false) ; 
   const navigate = useNavigate() ;
 
   const handleSubmit = async (e) => {
@@ -18,13 +18,13 @@ function Login({setLoggedIn}) {
         username,password
       }); 
       console.log(res) ;
-      const { status, message } = res.data;
+      const { status,token, message } = res.data;
       
-      // setLoggedIn(true) ; 
       
       if (status) {
         console.log("Login Successfully");
         localStorage.setItem('loggedIn', true) ;
+        localStorage.setItem('token', token)
         setLoggedIn(true) ;
         navigate("/");
 
@@ -58,6 +58,7 @@ function Login({setLoggedIn}) {
         />
       <button type="submit">Submit</button>
         </form>
+        <p>If not registered yet? <Link to='/register' >Register</Link> Here</p>
     </div>
   );
 }

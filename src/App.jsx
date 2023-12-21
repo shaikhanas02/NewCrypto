@@ -10,7 +10,7 @@ import Register from "./Pages/Register";
 import { CardProvider } from "./Context/CardContext";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false); 
 
   useEffect(() => {
     setLoggedIn(localStorage.getItem("loggedIn"));
@@ -29,14 +29,15 @@ function App() {
               path="/"
               element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
             />
-            <Route path="/compare" element={<Compare />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/watchlist" element={<Watchlist />} />
+            <Route path="/compare" element={<Compare setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}
+            />
+            <Route path="/dashboard" element={<Dashboard loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} /> 
+            <Route path="/watchlist" element={<Watchlist loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
             <Route path="/dashboard/:coinId" element={<Coin />} />
-          </>
+          </> 
         ) : (
-          <>
-            <Route path="/" element={<Login setLoggedIn={setLoggedIn} />} />
+          <> 
+            <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} /> 
             <Route path="/register" element={<Register />} />
             {/* <Route path="*" element={<Navigate to="/" />} /> */}
           </>

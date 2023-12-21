@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import axios from "axios"; 
@@ -16,27 +16,44 @@ function GridCards({ data }) {
   async function handleSave() {
     toggleSave(data.id);
 
-    const { id } = data;
+    const { id } = data; 
 
     try {
+      const token = localStorage.getItem("token"); 
+      console.log(token);
+    
+      if (!token) {
+        // Handle the case where the token is not available
+        console.error("Token not found");
+        return;
+      }
+
+    
+
       if (isSave) {
         // If already saved, delete the card
-        console.log(data)
-        console.log(data.constructor)
-        console.log() ;
-        await axios.delete("https://newcrypto.onrender.com/card" , data); 
+        await axios.delete(`https://newcrypto.onrender.com/card/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         console.log("Card deleted successfully");
       } else { 
         // If not saved, save the card
-        const savedCard = { id, isSave: true };
-        await axios.post("https://newcrypto.onrender.com/card", savedCard);
+        const savedCard = { id }; 
+        console.log(savedCard) ;
+        await axios.post("https://newcrypto.onrender.com/card", savedCard, {
+          headers: {  
+            Authorization: `Bearer ${token}`, 
+          }, 
+        }); 
         console.log("Card saved successfully");
-      }
+      } 
     } catch (error) {
       console.log("Error", error);
-      // Handle error if needed
     }
   }
+   
 
   return (
     <div className="flex flex-row border-2 border-solid  border-red-500 bg-slate-400 m-2">

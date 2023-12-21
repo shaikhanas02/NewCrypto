@@ -5,7 +5,7 @@ import SelectCoins from "../Functions/SelectCoins";
 import Charts from "../Components/Common/Chart";
 import CompareCharts from "../Components/Common/CompareCharts";
 
-function Compare() {
+function Compare({loggedIn, setLoggedIn}) {
   const [id1, setId1] = useState("bitcoin");
   const [id2, setId2] = useState("ethereum");
   const [data1, setData1] = useState("");
@@ -23,7 +23,8 @@ function Compare() {
       const res = await fetch(`https://api.coingecko.com/api/v3/coins/${id1}`);
       const data1 = await res.json();
       setData1(data1);
-    };
+      console.log(data1);
+        };
     fetchData1();
   }, [id1]);
 
@@ -31,7 +32,6 @@ function Compare() {
     const fetchData2 = async () => {
       const res = await fetch(`https://api.coingecko.com/api/v3/coins/${id2}`);
       const data2 = await res.json();
-      //  console.log(data2) ;
       setData2(data2);
     };
     fetchData2();
@@ -39,7 +39,7 @@ function Compare() {
 
   return ( 
     <div>
-      <Header />
+      <Header setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>
       <SelectCoins setId={setId1} id={id1} arr={arr1}/>
       <SelectCoins setId={setId2} id={id2} arr={arr2}/>
       {data1 && <ListCards data={data1} /> }

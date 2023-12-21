@@ -1,8 +1,14 @@
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss/utilities'; 
+
 
 .active{
     color: blue ;
 }
+body {
+    /* background-color: #718096; Replace with your desired gray color */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+  }

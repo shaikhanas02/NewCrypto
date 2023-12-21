@@ -4,13 +4,13 @@ import Tabs from "../Components/Tabs";
 import ListCards from "../Components/Common/ListCards";
 import GridCards from "../Components/Common/GridCards";
 
-function Watchlist() {
+function Watchlist({loggedIn, setLoggedIn}) {
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); 
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
+      try { 
         const res = await fetch(`https://newcrypto.onrender.com/watchlist`);
         const info = await res.json();
 
@@ -21,7 +21,7 @@ function Watchlist() {
             `https://api.coingecko.com/api/v3/coins/${item.id}`
           );
           const addInfo = await res.json();
-          console.log(addInfo) ;
+          console.log(addInfo) ; 
           additionalData.push(addInfo) ;
         };
 
@@ -47,7 +47,7 @@ function Watchlist() {
   ];
   return (
     <div>
-      <Header />
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <Tabs tabs={tabs} className="bg-slate-400" />
     </div>
   );

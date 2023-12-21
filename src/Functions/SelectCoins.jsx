@@ -6,7 +6,7 @@ function SelectCoins({setId, id, arr}) {
      setId(e.target.value )
   }
 
-return (
+return ( 
   <div>   
       <select onChange={select}>
       {arr?.map((item) =>( 

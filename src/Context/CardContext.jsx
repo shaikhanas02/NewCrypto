@@ -7,7 +7,7 @@ export const CardProvider = ({ children }) => {
 
   const toggleSave = (id) => {
     if (savedCards.includes(id)) {
-      setSavedCards(savedCards.filter((cardId) => cardId !== id));
+      setSavedCards(savedCards.filter((cardId) => cardId !== id)); 
     } else {
       setSavedCards([...savedCards, id]);
     }
