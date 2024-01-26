@@ -7,3 +7,5 @@ export const getCoinPrices = async (id, days)=> {
  
     return data ;
   }
+ 
+  

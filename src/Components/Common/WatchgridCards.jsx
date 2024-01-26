@@ -5,13 +5,13 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import axios from "axios";
 import { useCardContext } from "../../Context/CardContext";
 
-function GridCards({ data, isWatchList }) {
-  const { savedCards, toggleSave, watchlistData } = useCardContext();
+function WatchgridCards({ data, isWatchList }) {
+  const { savedCards, toggleSave } = useCardContext();
   const [isSave, setIsSave] = useState(false);
 
   if (!data) {
     return <div>Loading...</div>;
-  }
+  } 
   useEffect(() => {
     if (isWatchList) {
       setIsSave(true);
@@ -56,18 +56,18 @@ function GridCards({ data, isWatchList }) {
   }
 
   return (
-    <div className="flex flex-row border-2 border-solid  border-red-500 background-color : rgb(26,26,27) text-white m-2">
+    <div className="flex flex-row border-2 border-solid  border-white bg-neutral-900	 text-white m-2">
       <Link to={`/dashboard/${data.id}`}>
         <div className="  rounded-xl  min-w-fit flex justify-center">
-          <div className="p-3">
+          <div className=" p-3">
             <p>{data.id}</p>
-            <img className="w-6 " src={data.image} alt="abc" />
-            <p>${data.current_price}</p>
+            <img className="w-6 " src={data.image.thumb} alt="abc" />
+            <p>${data.market_data.current_price.usd}</p>
             <p>
-              {data.price_change_percentage_24h}%
+              {data.market_data.price_change_percentage_24h.usd}%
             </p> 
-            <p>Total Volume : {data.total_volume}</p>
-            <p>Market Cap : {data.market_cap}</p>
+            <p>Total Volume : {data.market_data.total_volume.usd}</p>
+            <p>Market Cap : {data.market_data.market_cap.usd}</p>
           </div>
         </div>
       </Link>
@@ -78,4 +78,4 @@ function GridCards({ data, isWatchList }) {
   );
 }
 
-export default GridCards;
+export default WatchgridCards ;

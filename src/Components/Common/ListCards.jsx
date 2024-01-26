@@ -9,7 +9,7 @@ function ListCards({data}) {
   const { savedCards, toggleSave } = useCardContext();
   const isSave = savedCards.includes(data.id);
 
-  if (!data) {
+  if (!data) { 
     return <div>Loading...</div>;  
   }
 
@@ -19,17 +19,13 @@ function ListCards({data}) {
     const { id } = data;
 
     try {
-      if (isSave) {
-        // If already saved, delete the card
-        // console.log(data)
-        // console.log(data.constructor)
-        // console.log() ;
+      if (isSave) { 
         await axios.delete("https://newcrypto.onrender.com/card" , data); 
         console.log("Card deleted successfully");
       } else { 
         // If not saved, save the card
         const savedCard = { id, isSave: true };
-        await axios.post("https://newcrypto.onrender.com/card", savedCard);
+        await axios.post("http://localhost:8000/card", savedCard); 
         console.log("Card saved successfully");
       }
     } catch (error) {
@@ -41,15 +37,15 @@ function ListCards({data}) {
   
   
   return (
-    <div className='flex flex-row border w-full '>
+    <div className='flex flex-row border w-screen text-white  bg-neutral-900  text-xl justify-center items-center py-4'>
     <Link to={`/dashboard/${data.id}`}>
-    <div className='flex flex-row border p-4  '>
+    <div className='flex flex-row  '>
         <p>{data.id}</p> 
-        <img src={data.image.thumb} alt="abc" />
-        <p>${data.market_data.current_price.usd}</p>
-        <p>{data.market_data.price_change_percentage_24h_in_currency.usd}%</p>
-        <p>Total Volume : {data.market_data.total_volume.usd}</p>
-        <p>Market Cap : {data.market_data.market_cap.usd}</p>
+        <img  className='w-6' src={data.image} alt="abc" />
+        <p>${data.current_price}</p>
+        <p>{data.price_change_percentage_24h}%</p>
+        <p>Total Volume : {data.total_volume}</p>
+        <p>Market Cap : {data.market_cap}</p>
         </div> 
         </Link> 
         <button onClick={handleSave}>{isSave ? <BookmarkIcon /> : <BookmarkBorderIcon /> }</button>

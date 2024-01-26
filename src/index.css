@@ -12,3 +12,49 @@ body {
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
   }
+
+  .animated-container {
+    animation: slideFromLeft 1s ease-out;
+  }
+  
+  .animated-item1 {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: fadeInFromLeft 1s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+  
+  .animated-item2 {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: fadeInFromLeft 1s ease-out forwards;
+    animation-delay: 1s;
+  }
+  
+  .animated-item3 {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: fadeInFromLeft 1s ease-out forwards;
+    animation-delay: 1.5s;
+  }
+  
+  @keyframes slideFromLeft {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  

@@ -4,6 +4,7 @@ import Header from "../Components/Common/Header";
 import SelectCoins from "../Functions/SelectCoins";
 import Charts from "../Components/Common/Chart";
 import CompareCharts from "../Components/Common/CompareCharts";
+import WatchlistCards from "../Components/Common/WatchlistCards";
 
 function Compare({loggedIn, setLoggedIn}) {
   const [id1, setId1] = useState("bitcoin");
@@ -36,14 +37,14 @@ function Compare({loggedIn, setLoggedIn}) {
     };
     fetchData2();
   }, [id2]);
-
+ 
   return ( 
     <div>
       <Header setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>
       <SelectCoins setId={setId1} id={id1} arr={arr1}/>
       <SelectCoins setId={setId2} id={id2} arr={arr2}/>
-      {data1 && <ListCards data={data1} /> }
-      {data2 && <ListCards data={data2} /> }
+      {data1 && <WatchlistCards data={data1} /> }
+      {data2 && <WatchlistCards data={data2}  /> }
       {data1 && data2 && <CompareCharts coin1={data1} coin2={data2} /> } 
     </div>
   );

@@ -16,13 +16,13 @@ function Dashboard({loggedIn, setLoggedIn}) {
     <div 
       className="bg-black min-h-screen w-full
     " 
-    >
+    > 
       <Header setLoggedIn={setLoggedIn} loggedIn={loggedIn} /> 
       <Search search={search} setSearch={setSearch} />
       <Tabs tabs={tabs} className="bg-black w-full" />
       
     </div>
-  );
+  ); 
 }
 
 export default Dashboard;

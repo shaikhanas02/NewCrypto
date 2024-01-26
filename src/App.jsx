@@ -22,11 +22,11 @@ function App() {
         <CardProvider>
     <BrowserRouter>
       <Routes>
-        {/* console.log(loggedIn) ; */}
+        console.log(loggedIn) ;
         {loggedIn ? (
-          <>
+          <> 
             <Route
-              path="/"
+              path="/home"
               element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
             />
             <Route path="/compare" element={<Compare setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}
@@ -35,13 +35,14 @@ function App() {
             <Route path="/watchlist" element={<Watchlist loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
             <Route path="/dashboard/:coinId" element={<Coin />} />
           </> 
-        ) : (
+         )  
+        : (
           <> 
-            <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} /> 
+           <Route path="/" element={<Login setLoggedIn={setLoggedIn} />} /> 
             <Route path="/register" element={<Register />} />
-            {/* <Route path="*" element={<Navigate to="/" />} /> */}
           </>
-        )}
+         ) 
+        }
       </Routes>
     </BrowserRouter>
         </CardProvider>

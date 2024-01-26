@@ -29,7 +29,7 @@ function Header({ setLoggedIn }) {
                 <ul className="flex flex-col">
                   <li>
                     <NavLink
-                      to="/"
+                      to="/home"
                       className="mr-6 text-xl font-bold hover:text-blue-500"
                     >
                       Home
@@ -65,7 +65,7 @@ function Header({ setLoggedIn }) {
                         setLoggedIn(false); 
                         localStorage.removeItem("loggedIn");
                         console.log("hui"); 
-                        Navigate('/login')
+                        Navigate('/')
                       }}
                     >
                       <FaSignOutAlt />
@@ -81,7 +81,7 @@ function Header({ setLoggedIn }) {
           <ul className="flex flex-row">
             <li>
               <NavLink
-                to="/"
+                to="/home"
                 className="mr-6 text-xl font-bold hover:text-blue-500"
               >
                 Home
@@ -117,7 +117,7 @@ function Header({ setLoggedIn }) {
                   setLoggedIn(false);
                   localStorage.removeItem("loggedIn");
                   localStorage.removeItem("token");
-                  Navigate('/login')
+                  Navigate('/')
                   console.log("hui");
                 }}
                 className="ml-2"
