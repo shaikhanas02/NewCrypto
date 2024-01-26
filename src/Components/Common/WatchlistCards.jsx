@@ -37,7 +37,7 @@ function WatchlistCards({data, isWatchList}) {
         }
         const savedCard = { id, isSave: false };
         if (isSave) {
-          await axios.delete("http://localhost:8000/card",
+          await axios.delete("https://newcrypto.onrender.com/card",
           { data : savedCard, 
             headers: {
               Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ function WatchlistCards({data, isWatchList}) {
           console.log("Card deleted successfully");
         } else {
           
-          await axios.post("http://localhost:8000/card", savedCard, {
+          await axios.post("https://newcrypto.onrender.com/card", savedCard, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

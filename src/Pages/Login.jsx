@@ -14,7 +14,7 @@ function Login({ setLoggedIn }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/login", {
+      const res = await axios.post("/login", {
         username,
         password,
       });
@@ -26,7 +26,7 @@ function Login({ setLoggedIn }) {
         localStorage.setItem("loggedIn", true);
         localStorage.setItem("token", token);
 
-        const res = await fetch("http://localhost:8000/watchlist", {
+        const res = await fetch("https://newcrypto.onrender.com/watchlist", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

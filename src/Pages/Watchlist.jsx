@@ -20,7 +20,7 @@ function Watchlist({ loggedIn, setLoggedIn }) {
           console.error("Token not found");
           return;
         }
-        const res = await fetch("http://localhost:8000/watchlist", {
+        const res = await fetch("https://newcrypto.onrender.com/watchlist", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
